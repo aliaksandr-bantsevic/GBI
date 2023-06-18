@@ -75,6 +75,11 @@ int g_ymin = 0;
 int g_lx = 0;
 int g_ly = 0;
 
+/* Global variables current mouse position */
+
+int g_mousepos_x = 0;
+int g_mousepos_y = 0;
+
 //---------------------------------------------------------------------------
 
 
@@ -1014,6 +1019,8 @@ void __fastcall TFMain::N_place_deleteClick(TObject *Sender)
 
 void __fastcall TFMain::TreeView_systemDblClick(TObject *Sender)
 {
+    return;//!!!
+
 	int type = 0;
 	int idx = 0;
 	void* obj = NULL;
@@ -1376,6 +1383,20 @@ void __fastcall TFMain::TreeView_systemClick(TObject *Sender)
 		}
 
 	}
+
+	//int type = 0;
+	//int idx = 0;
+	//void* obj = NULL;
+
+	// PopupMenu_systemPopup(this);
+
+    TPoint cPt;
+	GetCursorPos(&cPt);
+
+	g_mousepos_x = cPt.x;
+	g_mousepos_y = cPt.y;
+
+	this->PopupMenu_system->Popup(g_mousepos_x, g_mousepos_y);
 
 }
 //---------------------------------------------------------------------------
@@ -1914,7 +1935,8 @@ void __fastcall TFMain::Chart_y_hDblClick(TObject *Sender)
 
 void __fastcall TFMain::ToolButton_testClick(TObject *Sender)
 {
-
+	this->PopupMenu_system->Popup(g_mousepos_x, g_mousepos_y);
+	return;
 
 	TMeas* tmm = current_meas;
 	double xx = 12.1;

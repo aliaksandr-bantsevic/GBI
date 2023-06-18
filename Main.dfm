@@ -292,7 +292,6 @@ object FMain: TFMain
       Top = 0
       Caption = 'TEST'
       ImageIndex = 2
-      Visible = False
       OnClick = ToolButton_testClick
     end
     object ToolButton4: TToolButton
